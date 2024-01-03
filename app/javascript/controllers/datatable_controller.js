@@ -9,6 +9,7 @@ export default class extends Controller {
 
     connect()
     {
+        alert("Hello! I am an alert box!!");
         var searchText = this.element.getAttribute('data-search')
         this.oTable =  new DataTable($(this.element).find('table'), {
             "destroy": true,

@@ -22,5 +22,6 @@ Rails.application.routes.draw do
     resources :dashboards do
       get :index, on: :collection
     end
+    resources :posts
   end
 end
