@@ -29,12 +29,6 @@ class PostDatatable
          post.title,
          post.content,
          content_tag(:div) do
-           content = ""
-           content = '<a class="media" href="'+ admins_post_path(post.title)+'" target="_blank">'
-           content += image_tag post.attachment, class: 'align-self-start mr-3', size: '50x50' if post.attachment.present?
-           content.html_safe
-         end,
-         content_tag(:div) do
            content = ''
            content += "<span class='text-uppercase p-1'>"
            content += link_to "view", admins_post_path(post), method: :get, class: "text-success"
