@@ -1,0 +1,24 @@
+<h1>Podcasts</h1>
+
+<table id="podcasts-datatable">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @podcasts.each do |podcast| %>
+      <tr>
+        <td><%= podcast.id %></td>
+        <td><%= podcast.title %></td>
+        <td><%= podcast.description %></td>
+        <td><%= link_to 'View', admins_podcast_path(podcast), class: 'btn btn-primary', target: '_blank' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Podcast', new_admins_podcast_path, class: 'btn btn-success' %>

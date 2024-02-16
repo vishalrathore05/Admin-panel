@@ -46,7 +46,7 @@ class PostDatatable
    def fetch_posts
      posts = Post.all  # Change this to your actual User model or query
      if params[:sSearch].present?
-       posts = posts.where("CAST(id AS TEXT) ILIKE :search OR user_name ILIKE :search OR full_name ILIKE :search OR CAST(phone_no AS TEXT) ILIKE :search OR email ILIKE :search OR CAST(status AS TEXT) ILIKE :search", search: "%#{params[:sSearch]}%")
+       posts = posts.where("CAST(id AS TEXT) ILIKE :search OR title", search: "%#{params[:sSearch]}%")
      end
      posts
    end
