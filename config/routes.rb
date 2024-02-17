@@ -22,5 +22,9 @@ Rails.application.routes.draw do
     resources :dashboards do
       get :index, on: :collection
     end
+    resources :posts
+    resources :podcasts
+
   end
+  # mount ActionCable.server => '/cable'
 end

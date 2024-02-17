@@ -10,3 +10,6 @@ window.$ = jquery
 console.log('Application.js is loaded');
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
+
+// app/javascript/packs/application.js
+import "channels";
