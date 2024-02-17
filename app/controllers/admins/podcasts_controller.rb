@@ -7,9 +7,11 @@
     respond_to do |format|
       format.html
       format.json {
-        render json: PostDatatable.new(view_context, { recordset: @posts }) }
+        render json: PodcastDatatable.new(view_context, { recordset: @podcasts })
+      }
     end
   end
+  
 
   def show
   end
@@ -25,10 +27,11 @@
     @podcast = Podcast.new(podcast_params)
 
     if @podcast.save
-      redirect_to @podcast, notice: 'Podcast was successfully created.'
+      redirect_to admins_podcast_path(@podcast), notice: 'Podcast was successfully created.'
     else
       render :new
     end
+  
   end
 
   def update
