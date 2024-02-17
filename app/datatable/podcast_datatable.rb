@@ -1,6 +1,6 @@
 class PodcastDatatable
   include ApplicationHelper
-  delegate :content_tag, :params, :link_to, :podcast_path, to: :@view
+  delegate :content_tag, :params, :link_to, :admins_podcast_path, to: :@view
  
   def initialize(view, options = {})
     @view = view
@@ -28,7 +28,7 @@ class PodcastDatatable
         podcast.id,
         podcast.title,
         podcast.description,
-        link_to('View', podcast_path(podcast), class: 'btn btn-primary', target: '_blank')
+        link_to('View', admins_podcast_path(podcast), class: 'btn btn-primary', target: '_blank')
       ]
     end
   end

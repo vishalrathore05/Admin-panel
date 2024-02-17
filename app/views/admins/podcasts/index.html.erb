@@ -1,24 +1,33 @@
-<h1>Podcasts</h1>
-
-<table id="podcasts-datatable">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @podcasts.each do |podcast| %>
-      <tr>
-        <td><%= podcast.id %></td>
-        <td><%= podcast.title %></td>
-        <td><%= podcast.description %></td>
-        <td><%= link_to 'View', admins_podcast_path(podcast), class: 'btn btn-primary', target: '_blank' %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to 'New Podcast', new_admins_podcast_path, class: 'btn btn-success' %>
+<h1>Podcasts Dashboard</h1>
+<main id="dashboard" role="main" class="main">
+  <div class="content container-fluid">
+    <div class="mb-4" data-controller="datatable" data-source="<%= admins_podcasts_path(format: 'json') %>">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="input-group input-group-merge search-box" style="max-width: 450px">
+          <div class="input-group-prepend input-group-text">
+               <span class="input-group-text bg-transparent border-0 position-absolute" id="basic-addon1">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z" stroke="#828282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M22 22L20 20" stroke="#828282" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                  </svg>
+              </span>
+          </div>
+          <input type="search" class="form-control search_list" placeholder="Search" data-action="keyup->datatable#customSearch">
+        </div>
+      </div>
+      <div class="table-responsive-md datatable statistic-table" data-action="turbo:before-cache@document->datatable#destroyBeforeRender">
+        <table class=" table align-middle table-nowrap" data-search="Enter For Search" aria-describedby="Podcast List">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
