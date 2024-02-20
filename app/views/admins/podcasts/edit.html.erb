@@ -1,16 +1,15 @@
-new
-
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item">
+      <%= link_to 'Dashboard', admins_dashboards_path %>
     </li>
     <li class="breadcrumb-item">
       <%= link_to 'Podcast', admins_podcasts_path %>
     </li>
     <li class="breadcrumb-item">
-      New Poadcast
+      Podcast bewerken
     </li>
   </ol>
 </nav>
-<h3>Create new podcast</h3>
+<h3>Podcast bewerken</h3>
 <%= render "form" %>

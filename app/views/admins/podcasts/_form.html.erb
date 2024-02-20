@@ -1,34 +1,63 @@
-<%= form_with(model: @podcast, url: admins_podcasts_path) do |form| %>
-  <% if @podcast.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@podcast.errors.count, "error") %> prohibited this podcast from being saved:</h2>
+<div class="profile_page">
+  <div class="col-12 col-lg-8 col-md-12">
+    <div class="card border-0 rounded-4 mb-4">
+      <div class="card-body p-4">
+        <!-- app/views/podcasts/_form.html.erb -->
+        <%= form_with(model: @podcast, url: @podcast.persisted? ? admins_podcasts_path(@podcast) : admins_podcasts_path, method: @podcast.persisted? ? :patch : :post) do |f| %>
+          <% if @podcast.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@podcast.errors.count, 'error') %> prohibited this podcast from being saved:</h2>
 
-      <ul>
-        <% @podcast.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+              <ul>
+                <% @podcast.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>            <div class="card-header mb-4 p-0 bg-white border-0 d-flex justify-content-between w-100 align-items-center">
+        <h2 class="m-0 fs-18">Podcast Information</h2>
+        <div class="d-flex align-align-center gap-3">
+          <button class="btn edit_btn bg-primary text-white px-3 py-2 rounded-5"><%= @podcast.new_record? ? 'Save' : 'Update' %> Changes</button>
+          <%= link_to 'Back', admins_podcasts_path, class:'btn btn-outline-primary px-3 py-2 rounded-5' %>
+        </div>
+      </div>
+          <div class="d-lg-flex d-block gap-2">
+            <div class="w-100 mb-3">
+              <div class="form-group">
+                <%= f.label :title, class: "fs-14 fw-lighter text-secondary required" %>
+                <%= f.text_field :title, class: "form-control p-3 fs-14 text-secondary bg-white", placeholder: "title", required: true %>
+              </div>
+            </div>
+          </div>
+          <div class="d-lg-flex d-block gap-2">
+            <div class="w-100 mb-3">
+              <div class="form-group mb-4">
+                <%= f.label :podcast_url, class: "fs-14 fw-lighter text-secondary required" %>
+                <%= f.text_field :podcast_id, class: "form-control p-3 fs-14 text-secondary bg-white", placeholder: "podcast id", required: true %>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-12">
+            <div class="form-group mb-4">
+              <div class="col-12">
+                <div class="mb-3 file-single-upload">
+                  <label class="fs-14 fw-lighter text-secondary">Podcast Picture</label>
+                  <%= f.file_field :image, class: "filepond", accept: "image/*", 'data-controller': "media", 'data-media-target': "single", 'data-media-user-value': '{
+                          }' %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-lg-flex d-block gap-2">
+            <div class="w-100 mb-3">
+              <div class="form-group ">
+                <%= f.label :Description, class: "fs-14 fw-lighter text-secondary required" %>
+                <%= f.text_field :description, class: "form-control p-3 fs-14 text-secondary bg-white", placeholder: "Description", required: true %>
+              </div>
+            </div>
+          </div>
         <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, class: 'form-control' %>
   </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :podcast_id %>
-    <%= form.text_field :podcast_id, class: 'form-control' %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit 'Save Podcast', class: 'btn btn-primary' %>
-  </div>
-<% end %>
-
-<%= link_to 'Back', admins_podcasts_path, class: 'btn btn-secondary' %>
+</div>
